@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "paddle.h"
 
 int main(void)
 {
@@ -11,16 +12,21 @@ int main(void)
     
     // Set target FPS
     SetTargetFPS(60);
-    
+
+    paddle player;
+
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
-        
+
         // Draw
+        player.reset();
         BeginDrawing();
             ClearBackground(RAYWHITE);
-            DrawText("what the sigma!", 190, 200, 100, LIGHTGRAY);
+            player.draw();
+
+
         EndDrawing();
     }
     
