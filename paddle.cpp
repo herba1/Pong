@@ -1,15 +1,15 @@
 #include "paddle.h"
+#include <iostream>
 
 paddle::paddle(){
-    position = {100,100};
+    position = {0,100};
+}
+paddle::paddle(float x = 0, float y = 100){
+    position = {x,y};
 }
 
 void paddle::draw(){
-    DrawRectangle(position.x, position.y, 100,100,BLUE);
-}
-
-void paddle::update(){
-
+    DrawRectangle(position.x, position.y, 15,100,BLUE);
 }
 
 void paddle::reset(){
@@ -18,9 +18,21 @@ void paddle::reset(){
 }
 
 void paddle::moveUp(){
-    position.y += 5;
+    std::cout << "postion: " << position.y << std::endl;
+    if(position.y <= 0){
+       position.y = 0;
+    }
+    else{
+        position.y -= 5;
+    }
 }
 
 void paddle::moveDown(){
-    position.y -= 5;
+    std::cout << "postion: " << position.y << std::endl;
+    if(position.y >= GetScreenHeight() - 100){
+       position.y = GetScreenHeight() - 100;
+    }
+    else{
+        position.y += 5;
+    }
 }

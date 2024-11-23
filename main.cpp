@@ -1,5 +1,7 @@
 #include "raylib.h"
 #include "paddle.h"
+#include "ball.h"
+#include <iostream>
 
 int main(void)
 {
@@ -14,17 +16,38 @@ int main(void)
     SetTargetFPS(60);
 
     paddle player;
+    paddle opponent(GetScreenWidth()-15,100);
+    ball ball;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        ball.update();
         // Update
+        if (IsKeyDown(KEY_W)){
+            player.moveUp();
+            std::cout << "move up" << std::endl;
+        }
+        if (IsKeyDown(KEY_S)){
+            player.moveDown();
+            std::cout << "move down" << std::endl;
+        }
 
+        if (IsKeyDown(KEY_UP)){
+            opponent.moveUp();
+            std::cout << "move up" << std::endl;
+        }
+        if (IsKeyDown(KEY_DOWN)){
+            opponent.moveDown();
+            std::cout << "move down" << std::endl;
+        }
         // Draw
-        player.reset();
         BeginDrawing();
             ClearBackground(RAYWHITE);
+            ball.draw();
             player.draw();
+            opponent.draw();
+
 
 
         EndDrawing();
