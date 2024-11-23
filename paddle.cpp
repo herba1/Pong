@@ -3,9 +3,17 @@
 
 paddle::paddle(){
     position = {0,100};
+    hitbox.height = 100;
+    hitbox.width = 15;
+    hitbox.x = position.x;
+    hitbox.y = position.y;
 }
 paddle::paddle(float x = 0, float y = 100){
     position = {x,y};
+    hitbox.height = 100;
+    hitbox.width = 15;
+    hitbox.x = position.x;
+    hitbox.y = position.y;
 }
 
 void paddle::draw(){
@@ -18,21 +26,27 @@ void paddle::reset(){
 }
 
 void paddle::moveUp(){
-    std::cout << "postion: " << position.y << std::endl;
     if(position.y <= 0){
        position.y = 0;
     }
     else{
         position.y -= 5;
     }
+    hitbox.x = position.x;
+    hitbox.y = position.y;
 }
 
 void paddle::moveDown(){
-    std::cout << "postion: " << position.y << std::endl;
     if(position.y >= GetScreenHeight() - 100){
        position.y = GetScreenHeight() - 100;
     }
     else{
         position.y += 5;
     }
+    hitbox.x = position.x;
+    hitbox.y = position.y;
+}
+
+Rectangle paddle::getHitBox(){
+    return hitbox;
 }

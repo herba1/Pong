@@ -22,15 +22,13 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        ball.update();
+        ball.update(false);
         // Update
         if (IsKeyDown(KEY_W)){
             player.moveUp();
-            std::cout << "move up" << std::endl;
         }
         if (IsKeyDown(KEY_S)){
             player.moveDown();
-            std::cout << "move down" << std::endl;
         }
 
         if (IsKeyDown(KEY_UP)){
@@ -47,9 +45,6 @@ int main(void)
             ball.draw();
             player.draw();
             opponent.draw();
-
-
-
         EndDrawing();
     }
     

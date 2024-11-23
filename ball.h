@@ -6,14 +6,17 @@ class ball{
         Vector2 position;
         float radius;
         int direction;
-        int speed;
+        int speedX;
+        int speedY;
     public:
 
     ball();
     ball(int direction);
     void reset();
-    void update();
+    void update(bool);
     void draw();
     float getX();
     float getY();
+    Vector2 getV2();
+    float getRadius();
 };

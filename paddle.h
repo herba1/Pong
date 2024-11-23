@@ -4,6 +4,7 @@
 class paddle{
     private:
         Vector2 position;
+        Rectangle hitbox;
     public:
         paddle(float x, float y);
         paddle();
@@ -12,4 +13,5 @@ class paddle{
         void reset();
         void moveUp();
         void moveDown();
+        Rectangle getHitBox();
 };
