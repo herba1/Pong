@@ -1,4 +1,5 @@
 #include "ball.h"
+#include "constants.h"
 #include <iostream>
 
 ball::ball(){
@@ -27,13 +28,21 @@ void ball::draw(){
 void ball::update(bool collision){
     if(direction == 0){
         position.x += speedX;
-        // position.y += speedY;
+        position.y += speedY;
+        // paddle collision
         if (collision){
             speedX *= -1;
+            if(speedX < 0) position.x += -10;
+            else position.x+= 10;
         }
-        // if (position.y >= GetScreenHeight() or position.y <= 0){
-        //     speedY *= -1;
-        // }
+
+        if (position.y<=0 || position.y >= GetScreenHeight()){
+            speedY *= -1;
+        }
+
+        if (position.x >= GetScreenWidth()- paddleWidth || position.x<=0+ paddleWidth){
+            position.x = GetScreenWidth()/2;
+        }
     }
 }
 

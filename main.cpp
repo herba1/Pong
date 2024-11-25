@@ -3,6 +3,7 @@
 #include "ball.h"
 #include <iostream>
 
+
 int main(void)
 {
     // Window configuration
@@ -22,7 +23,11 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        ball.update(false);
+        auto collision = [&ball,&player,&opponent](){
+            return (CheckCollisionCircleRec(ball.getV2(),ball.getRadius(),player.getHitBox())
+            || CheckCollisionCircleRec(ball.getV2(),ball.getRadius(),opponent.getHitBox()));
+        };
+        ball.update(collision());
         // Update
         if (IsKeyDown(KEY_W)){
             player.moveUp();
